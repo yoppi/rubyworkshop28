@@ -1,21 +1,20 @@
 require 'benchmark'
-require 'pp'
 
 PRIMESIZE = 100000
-$prime_table = Array.new(PRIMESIZE, true)
+PRIME_TABLE = Array.new(PRIMESIZE, true)
 
 def make_primetable
-  $prime_table[0] = false 
-  $prime_table[1] = false
+  PRIME_TABLE[0] = false 
+  PRIME_TABLE[1] = false
   2.upto(Math.sqrt(PRIMESIZE)) do |i|
-    if $prime_table[i]
-      (i*2).step(PRIMESIZE, i) {|j| $prime_table[j] = false}
+    if PRIME_TABLE[i]
+      (i*2).step(PRIMESIZE, i) {|j| PRIME_TABLE[j] = false}
     end
   end
 end
 
 def prime? n
-  $prime_table[n]
+  PRIME_TABLE[n]
 end
 
 if __FILE__ == $0
